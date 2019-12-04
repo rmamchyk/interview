@@ -57,7 +57,7 @@ for(var i = 0; i < 10; i++) {
 
 // 3 - function-contructor; 'new' keyword; object creation
 function Person() {
-    this.name = 'yura';
+    this.name = 'Alex';
 }
 
 new Person();
@@ -76,35 +76,74 @@ new Person();
 // __proto__  - is a property of object which is references 'prototype'
 
 
+
 // 4 - chain of prototypes
+function Person(name) {
+    this.name = name;
+}
+Person.prototype.name = 'anonymous';
+
+var alex = new Person('Alex');
+
+delete alex.name;
+console.log(alex.name);
+
+delete alex.name;
+console.log(alex.name);
+
+// Answer
+// 1) anonymous (prototype value)
+// 2) anonymous (prototype value, because prototype chain is read-only; it doesn not work in write way; it cannot delete 'name' because it does not exist on 'alex' object)
+
+
+
+//5 - this; function-constructor
+
+// Question
+function f() {
+    console.log(this);
+}
+
+f();
+// Answer: window
+
+// Question
+'use strict';
+
+function f() {
+    console.log(this);
+}
+
+f();
+// Answer: undefined
+
+//Question
+function f() {
+    console.log(this);
+  }
+  
+new f();
+//Answer: {}
+
+// Question
+function f() {
+    console.log(this);
+}
+
+f.call({});
+// Answer: { yo: function f; }
+
+// Question
+function f() {
+    console.log(this);
+}
 var obj = {
-    a: 5,
-    b: {
-        c: 10
-    }
-  };
-  
-  obj.__proto__ = {
-    a: 10,
-    b: {
-        c: 20
-    }
-  };
-  
-  delete obj.a;
-  console.log(obj.a);
-  
-  delete obj.a;
-  console.log(obj.a);
-  
-  delete obj.b;
-  console.log(obj.b.c);
-  
-  delete obj.b.c;
-  console.log(obj.b.c);
-  
-  // Answer
-  // 1) 10 (prototype value)
-  // 2) 10 (prototype chain is read-only; it doesn not work in write way; it cannot delete 'a' because it does not exists in 'obje')
-  // 3) 20 (prototype value)
-  // 4) undefined ()
+    yo: f
+};
+
+obj.yo();
+// Answer: { yo: function f; }
+
+
+  // Queston: 
+  // Answer: window
