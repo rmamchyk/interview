@@ -7,6 +7,17 @@ brr = [42, 43];
 // Question: arr[0] ???
 // Answer: 1
 
+// 2 - Hoisting
+function ololo() {
+	function f() { return 10; }
+	return f();
+	function f() { return 7; }
+}
+
+ololo();
+
+// Answer: 7
+
 // 2 - Closure
 
 for(var i = 0; i < 10; i++) {
