@@ -111,12 +111,37 @@ console.log(alex.name);
 //5 - this; function-constructor
 
 // Question
+const obj = {
+    first: 'Dylan',
+    last: 'Israel',
+    full: () => {
+        return `${this.first} ${this.last}`;
+    }
+};
+  
+console.log(obj.full()); // 'undefined undefined'
+
+
+// Question
+const obj = {
+    first: 'Dylan',
+    last: 'Israel',
+    full() {
+        return `${this.first} ${this.last}`;
+    }
+};
+  
+console.log(obj.full()); // 'Dylan Israel'
+
+
+// Question
 function f() {
     console.log(this);
 }
 
 f();
 // Answer: window
+
 
 // Question
 'use strict';
@@ -128,6 +153,7 @@ function f() {
 f();
 // Answer: undefined
 
+
 //Question
 function f() {
     console.log(this);
@@ -136,6 +162,7 @@ function f() {
 new f();
 //Answer: {}
 
+
 // Question
 function f() {
     console.log(this);
@@ -143,6 +170,7 @@ function f() {
 
 f.call({});
 // Answer: { yo: function f; }
+
 
 // Question
 function f() {
@@ -155,6 +183,3 @@ var obj = {
 obj.yo();
 // Answer: { yo: function f; }
 
-
-  // Queston: 
-  // Answer: window
